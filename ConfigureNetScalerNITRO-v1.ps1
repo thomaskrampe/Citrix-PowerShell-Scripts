@@ -19,9 +19,9 @@
         Subnetmask for the SNIP.
     .PARAMETER DNSServer 
         The DNS Server for this environment.
-	.PARAMETER DNSSuffix 
+    .PARAMETER DNSSuffix 
         The DNS Suffix for this environment (e.g. mycorp.local).
-	.PARAMETER NTPServer 
+    .PARAMETER NTPServer 
         The NTP Server for this environment (e.g. pool.ntp.org or IP-Address).
     .PARAMETER SFVIP 
         The virtual IP-Address for Storefront Loadbalancing
@@ -77,24 +77,24 @@ Param (
     [string]$SNIP = "192.168.0.101",
     [string]$SNIPMask = "255.255.255.0",
     [string]$DNSServer = "192.168.0.2",
-	[string]$DNSSuffix = "company.tld",
-	[string]$NTPServer = "192.168.0.2",
-	[string]$SFVIP = "192.168.0.103",
-	[string]$SFServer = "sf-01",
-	[string]$SFServerIP = "192.168.0.109",
-	[string]$DCServerIP = "192.168.0.2",
-	[string]$DCBaseDN = "dc=company,dc=tld",
-	[string]$DCBindDNName = "readonly@company.tld",
-	[string]$DCBindDNPass = "Password01!",
+    [string]$DNSSuffix = "company.tld",
+    [string]$NTPServer = "192.168.0.2",
+    [string]$SFVIP = "192.168.0.103",
+    [string]$SFServer = "sf-01",
+    [string]$SFServerIP = "192.168.0.109",
+    [string]$DCServerIP = "192.168.0.2",
+    [string]$DCBaseDN = "dc=company,dc=tld",
+    [string]$DCBindDNName = "readonly@company.tld",
+    [string]$DCBindDNPass = "Password01!",
     [string]$DDCHostname = "ddc-01",
     [string]$DDCIP = "192.168.0.107",
-	[string]$GatewayFQDN = "extern.company.tld",
-	[string]$GWVIP = "192.168.1.142",
-	[string]$GatewaySTA = "http://192.168.0.107",
-	[string]$vSRVCertName = "wildcard_company_tld",
-	[string]$vSRVCertFile = "wildcard_company_tld.crt",
-	[string]$vSRVCertKey = "wildcard_company_tld.pem",
-	[string]$vSRVCertKeyPass = "Password01",
+    [string]$GatewayFQDN = "extern.company.tld",
+    [string]$GWVIP = "192.168.1.142",
+    [string]$GatewaySTA = "http://192.168.0.107",
+    [string]$vSRVCertName = "wildcard_company_tld",
+    [string]$vSRVCertFile = "wildcard_company_tld.crt",
+    [string]$vSRVCertKey = "wildcard_company_tld.pem",
+    [string]$vSRVCertKeyPass = "Password01",
     [string]$vSRVCertNameInt ="",
     [string]$vSRVCertFileInt = "",
     [string]$vSRVCertKeyInt = "",
