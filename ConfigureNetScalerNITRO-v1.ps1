@@ -31,37 +31,37 @@
         IP-Address of the Storefront Server
     .PARAMETER DCServerIP 
         IP-Address of the Domain Controller
-    .PARAMETER $DCBaseDN  
+    .PARAMETER DCBaseDN  
         Base DN for the Active Directory (e.g. dc=company,dc=tld)
-    .PARAMETER $DCBindDNName 
+    .PARAMETER DCBindDNName 
         Read Account for the AD (e.g. user@domain.tld)
-    .PARAMETER $DCBindDNPass 
+    .PARAMETER DCBindDNPass 
         Password for the AD user (Attention - readable in script)
-    .PARAMETER $DDCHostname 
+    .PARAMETER DDCHostname 
         Hostname of the Delivery Controller
-    .PARAMETER $DDCIP 
+    .PARAMETER DDCIP 
         IP-Address of the Delivery Controller
-    .PARAMETER $GatewayFQDN 
+    .PARAMETER GatewayFQDN 
         External FQDN for the NSG
-    .PARAMETER $GWVIP 
+    .PARAMETER GWVIP 
         Vitual IP-Address for the NSG vServer
-    .PARAMETER $GatewaySTA 
+    .PARAMETER GatewaySTA 
         STA Server (e.g. http://staserver normally the DDC)
-    .PARAMETER $vSRVCertName 
+    .PARAMETER vSRVCertName 
         Name of the external certificate pair
-    .PARAMETER $vSRVCertFile 
+    .PARAMETER vSRVCertFile 
         File name of the external certificate
-    .PARAMETER $vSRVCertKey 
+    .PARAMETER vSRVCertKey 
         File name of the external private key
-    .PARAMETER $vSRVCertKeyPass 
+    .PARAMETER vSRVCertKeyPass 
         Password of the external private key
-    .PARAMETER $vSRVCertNameInt 
+    .PARAMETER vSRVCertNameInt 
         Name of the internal certificate pair
-    .PARAMETER $vSRVCertFileInt 
+    .PARAMETER vSRVCertFileInt 
         File name of the internal certificate
-    .PARAMETER $vSRVCertKeyInt 
+    .PARAMETER vSRVCertKeyInt 
         File name of the internal private key
-    .PARAMETER $vSRVCertKeyPassInt 
+    .PARAMETER vSRVCertKeyPassInt 
         Password of the internal private key
     .NOTES
         Thomas Krampe - t.krampe@loginconsultants.de
