@@ -348,19 +348,19 @@ function CreateLDAPvServer ($VSRVName, $VSRVIP, $VSRVPort, $VSRVbaseDN, $VSRVbin
 <#
     .SYNOPSIS
         Create a LDAP authentication server
-    .PARAMETER $VSRVName (Mandatory)
+    .PARAMETER VSRVName (Mandatory)
         Name of the virtual server
-    .PARAMETER $VSRVIP (Mandatory)
+    .PARAMETER VSRVIP (Mandatory)
         IP-address of the Domain Controller
-    .PARAMETER $VSRVPort (Mandatory)
+    .PARAMETER VSRVPort (Mandatory)
         LDAP Port (389 unsecure, 686 secure)
-    .PARAMETER $VSRVbaseDN (Mandatory)
+    .PARAMETER VSRVbaseDN (Mandatory)
         BaseDN of the LDAP directory (dc=company,dc=local)
-    .PARAMETER $VSRVbindDN (Mandatory)
+    .PARAMETER VSRVbindDN (Mandatory)
         Service user (read access to AD)
-    .PARAMETER $VSRVBindPassword (Mandatory)
+    .PARAMETER VSRVBindPassword (Mandatory)
         Password of the service user (ATTENTION it's readable in the script)
-    .PARAMETER $secure (Mandatory)
+    .PARAMETER secure (Mandatory)
         $true (LDAP/S) or $false (LDAP)
 #>
 $body = @{
@@ -393,9 +393,9 @@ function CreateLDAPPolicy ($LDAPPolicyName, $vSRVName) {
 <#
     .SYNOPSIS
         Create a LDAP policy
-    .PARAMETER $LDAPPolicyName (Mandatory)
+    .PARAMETER LDAPPolicyName (Mandatory)
         Name of the LDAP policy
-    .PARAMETER $vSRVName (Mandatory)
+    .PARAMETER vSRVName (Mandatory)
         Name of the corresponding vServer
 #>
 $body = ConvertTo-JSON @{
@@ -414,7 +414,7 @@ function CreateGlobalLDAPBinding ($LDAPPolicyName) {
 <#
     .SYNOPSIS
         Create a LDAP policy global binding
-    .PARAMETER $LDAPPolicyName (Mandatory)
+    .PARAMETER LDAPPolicyName (Mandatory)
         Name of the LDAP policy to bind
 #>
 $body = ConvertTo-JSON @{
@@ -431,11 +431,11 @@ function CreateSFMonitor ($MonitorName, $SFStore, $secure) {
 <#
     .SYNOPSIS
         Create a Storefront LB Monitor
-    .PARAMETER $MonitorName (Mandatory)
+    .PARAMETER MonitorName (Mandatory)
         Name of the monitor
-    .PARAMETER $SFStore (Mandatory)
+    .PARAMETER SFStore (Mandatory)
         Path to the Storefront Store
-    .PARAMETER $secure (Mandatory)
+    .PARAMETER secure (Mandatory)
         HTTP ($false), HTTPS ($true)
 #>
 $body = @{
@@ -462,11 +462,11 @@ function CreateServiceGroup ($SGName, $SGType, $SGMonitor) {
 <#
     .SYNOPSIS
         Create a Load Balancing Service Group
-    .PARAMETER $SGName (Mandatory)
+    .PARAMETER SGName (Mandatory)
         Name of the Service Group
-    .PARAMETER $SGType (Mandatory)
+    .PARAMETER SGType (Mandatory)
         Service Group type 
-    .PARAMETER $SGMonitor (Mandatory)
+    .PARAMETER SGMonitor (Mandatory)
         Name of the corresponding monitor
 #>
 $body = ConvertTo-JSON @{
@@ -495,13 +495,13 @@ function CreateServiceGroupMember ($SvcGrpName, $ServerObject, $ServerIP, $Serve
 <#
     .SYNOPSIS
         Create a Server Object used in Service Group
-    .PARAMETER $SvcGrpName (Mandatory)
+    .PARAMETER SvcGrpName (Mandatory)
         Name of the Service Group
-    .PARAMETER $ServerObject (Mandatory)
+    .PARAMETER ServerObject (Mandatory)
         Name of the Server Object 
-    .PARAMETER $ServerIP (Mandatory)
+    .PARAMETER ServerIP (Mandatory)
         IP-Address for the Server Object
-    .PARAMETER $ServerPort (Mandatory)
+    .PARAMETER ServerPort (Mandatory)
         Port of the Server Object
 #>
 # Check if Server Object already exist, if not create Server Object
@@ -535,13 +535,13 @@ function CreateLBvServer ($LBvServerName, $LBvServerType, $LBvServerIP, $LBvServ
 <#
     .SYNOPSIS
         Create a Server Object used in Service Group
-    .PARAMETER $LBvServerName (Mandatory)
+    .PARAMETER LBvServerName (Mandatory)
         Name of the virtual Server
-    .PARAMETER $LBvServerType (Mandatory)
+    .PARAMETER LBvServerType (Mandatory)
         Type of the virtual Server 
-    .PARAMETER $LBvServerIP (Mandatory)
+    .PARAMETER LBvServerIP (Mandatory)
         IP-Address for the virtual Server
-    .PARAMETER $LBvServerPort (Mandatory)
+    .PARAMETER LBvServerPort (Mandatory)
         Port of the virtual Server (80 or 443)
 #>
 $body = ConvertTo-JSON @{
@@ -561,9 +561,9 @@ function AddLBvServerSvcGrp ($vSRVName, $SvcGrpName) {
 <#
     .SYNOPSIS
         Bind virtual Server to Service Group
-    .PARAMETER $vSRVName (Mandatory)
+    .PARAMETER vSRVName (Mandatory)
         Name of the virtual Server
-    .PARAMETER $SvcGrpName (Mandatory)
+    .PARAMETER SvcGrpName (Mandatory)
         Type of the Service Group 
 #>
 # Bind Service Group to vServer
@@ -582,11 +582,11 @@ function AddLBvServerPersist ($LBvSrvName, $LBvSrvType, $LBvSrvTimeout) {
 <#
     .SYNOPSIS
         Configure vServer persistence
-    .PARAMETER $LBvSrvName (Mandatory)
+    .PARAMETER LBvSrvName (Mandatory)
         Name of the virtual Server
-    .PARAMETER $LBvSrvType (Mandatory)
+    .PARAMETER LBvSrvType (Mandatory)
         Persistance Type (normally SOURCEIP)
-    .PARAMETER $LBvSrvTimeout (Mandatory)
+    .PARAMETER LBvSrvTimeout (Mandatory)
         Timeout if not provided 0
 #> 
 if ($Timeout -eq $null) { $LBvSrvTimeout = 2 }
@@ -607,15 +607,15 @@ function CopySSLCertFiles ($NSHostIP, $NSUser, $NSPassword, $NSCertFileName, $NS
 <#
     .SYNOPSIS
         Copy certifcate files to the NetScaler appliance
-    .PARAMETER $NSHostIP (Mandatory)
+    .PARAMETER NSHostIP (Mandatory)
         IP-address (NSIP) of the NetScaler
-    .PARAMETER $NSUser (Mandatory)
+    .PARAMETER NSUser (Mandatory)
         Superuser name (at this point it should be nsroot)
-    .PARAMETER $NSPassword (Mandatory)
+    .PARAMETER NSPassword (Mandatory)
         Superuser Password (at this point it should be nsroot)
-    .PARAMETER $NSCertFileName (Mandatory)
+    .PARAMETER NSCertFileName (Mandatory)
         Name of the certifcate file (must be in the script directory)
-    .PARAMETER $NSKeyFileName (Mandatory)
+    .PARAMETER NSKeyFileName (Mandatory)
         Name of the private key file (must be in the script directory)
 #>
 # Check if Windows Management Framework 5 is installed (https://www.microsoft.com/en-us/download/details.aspx?id=50395)
@@ -653,13 +653,13 @@ function InstallSSLCert ($NSCErtName, $CertFile, $KeyFile, $KeyPassword) {
 <#
     .SYNOPSIS
         Install SSL certificate
-    .PARAMETER $NSCErtName (Mandatory)
+    .PARAMETER NSCErtName (Mandatory)
         Name of the Certificate
-    .PARAMETER $CertFile (Mandatory)
+    .PARAMETER CertFile (Mandatory)
         Name of the Certificate file
-    .PARAMETER $KeyFile (Mandatory)
+    .PARAMETER KeyFile (Mandatory)
         Timeout if not provided 0
-    .PARAMETER $KeyPassword (Mandatory)
+    .PARAMETER KeyPassword (Mandatory)
         Timeout if not provided 0
 #>
 $body = ConvertTo-JSON @{
@@ -679,7 +679,7 @@ function AddCipher ($CipherGroupName, $Cipher) {
 <#
     .SYNOPSIS
         Add Cipher to Cipher Group
-    .PARAMETER $CipherGroupName (Mandatory)
+    .PARAMETER CipherGroupName (Mandatory)
         Name of the cipher group
 #>
 $body = @{
@@ -698,7 +698,7 @@ function AddCipherGroup ($CipherGroupName) {
 <#
     .SYNOPSIS
         Create Cipher Group
-    .PARAMETER $CipherGroupName (Mandatory)
+    .PARAMETER CipherGroupName (Mandatory)
         Name of the cipher group
 #>
 $body = @{
@@ -726,9 +726,9 @@ function AddSSLvServerCert ($vSRVName, $vSRVCert) {
 <#
     .SYNOPSIS
         Add SSL cert to vServer
-    .PARAMETER $vSRVName (Mandatory)
+    .PARAMETER vSRVName (Mandatory)
         Name of the virtual server to bind the certificate
-    .PARAMETER $vSRVCert (Mandatory)
+    .PARAMETER vSRVCert (Mandatory)
         Name of the certificate
 #>
 $body = ConvertTo-JSON @{
@@ -746,9 +746,9 @@ function AddSSLvServerCipher ($vSRVName, $CipherGroupName) {
 <#
     .SYNOPSIS
         Add cipher group to virtual server
-    .PARAMETER $vSRVName (Mandatory)
+    .PARAMETER vSRVName (Mandatory)
         Name of the virtual server
-    .PARAMETER $CipherGroupName (Mandatory)
+    .PARAMETER CipherGroupName (Mandatory)
         Name of the cipher group
 #>
 # Delete default cipher group binding
@@ -770,7 +770,7 @@ function DisableSSLv3 ($vSRVName) {
 <#
     .SYNOPSIS
         Disable SSLv3
-    .PARAMETER $vSRVName (Mandatory)
+    .PARAMETER vSRVName (Mandatory)
         Name of the virtual Server
 #>
 $body = ConvertTo-JSON @{
@@ -788,11 +788,11 @@ function CreateSessionPolicies ($SFFQDN, $SFStore, $SFSSODomain) {
 <#
     .SYNOPSIS
         Create default ICA session policies
-    .PARAMETER $SFFQDN (Mandatory)
+    .PARAMETER SFFQDN (Mandatory)
         FQDN of the Storefront server
-    .PARAMETER $SFStore (Mandatory)
+    .PARAMETER SFStore (Mandatory)
         Name of the store (without "Web")
-    .PARAMETER $SFSSODomain (Mandatory)
+    .PARAMETER SFSSODomain (Mandatory)
         Single sign on domain for Storefront
 #>
 $body = ConvertTo-JSON @{
@@ -849,11 +849,11 @@ function CreateGatewayvServer ($NSGFQDN, $NSGVIP, $STA) {
 <#
     .SYNOPSIS
         Create the NetScaler Gateway virtual server
-    .PARAMETER $NSGFQDN (Mandatory)
+    .PARAMETER NSGFQDN (Mandatory)
         FQDN of the NSG vServer
-    .PARAMETER $NSGVIP (Mandatory)
+    .PARAMETER NSGVIP (Mandatory)
         IP-address of the NSG vServer
-    .PARAMETER $STA (Mandatory)
+    .PARAMETER STA (Mandatory)
         FQDN of the STA server(s)
 #>
 $body = ConvertTo-JSON @{
@@ -917,9 +917,9 @@ function CreateGatewayvServerAuth ($NSGFQDN, $LDAPPolicyName) {
 <#
     .SYNOPSIS
         Bind LDAP Policy to NSG
-    .PARAMETER $NSGFQDN (Mandatory)
+    .PARAMETER NSGFQDN (Mandatory)
         FQDN of the NSG vServer
-    .PARAMETER $LDAPPolicyName (Mandatory)
+    .PARAMETER LDAPPolicyName (Mandatory)
         Name of the LDAP Policy
 #>
 $body = ConvertTo-JSON @{
