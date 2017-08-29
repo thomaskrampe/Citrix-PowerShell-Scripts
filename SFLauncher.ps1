@@ -159,8 +159,8 @@ function Test-LoginForm {
     $loginButton = $null
     $try = 1
     do {
-        $NGloginButton = [System.__ComObject].InvokeMember(“getElementById”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGLoginButtonId)
-        $SFloginButton = [System.__ComObject].InvokeMember(“getElementById”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFLoginButtonId)
+        $NGloginButton = [System.__ComObject].InvokeMember("getElementById",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGLoginButtonId)
+        $SFloginButton = [System.__ComObject].InvokeMember("getElementById",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFLoginButtonId)
         if ($NGloginButton -ne $null -and $NGloginButton.GetType() -ne [DBNull]) {
             "Try #$try`: SUCCESS","NETSCALER GATEWAY DETECTED" | Write-ToSFLauncherLog
             New-Variable -Name isNG -Value $true -Scope Script
@@ -185,11 +185,11 @@ function Test-LoginForm {
 function Submit-UserCredentials {
     if ($isNG) {
         Write-ToSFLauncherLog "Getting Login button"
-        $loginButton = [System.__ComObject].InvokeMember(“getElementById”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGLoginButtonId)
+        $loginButton = [System.__ComObject].InvokeMember("getElementById",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGLoginButtonId)
 
         Write-ToSFLauncherLog "Detecting textbox names"
         $start = 0
-        $inputs = @([System.__ComObject].InvokeMember(“getElementsByTagName”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, "Input"))
+        $inputs = @([System.__ComObject].InvokeMember("getElementsByTagName",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, "Input"))
         for($x = 0; $x -le $inputs.Length-1; $x++) {
             if($inputs.GetValue($x).ID -cnotlike "dummy*" -and $inputs.GetValue($x).ID -cnotlike "Log*") {
                 switch($start) {
@@ -203,12 +203,12 @@ function Submit-UserCredentials {
         Write-ToSFLauncherLog "Detected Password textbox name: $NGPasswordTextBoxName"
 
         Write-ToSFLauncherLog "Getting UserName textbox"
-        $userNameTextBox = @([System.__ComObject].InvokeMember(“getElementsByName”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGUserNameTextBoxName)) | where { $_.name -eq $NGUserNameTextBoxName }
+        $userNameTextBox = @([System.__ComObject].InvokeMember("getElementsByName",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGUserNameTextBoxName)) | where { $_.name -eq $NGUserNameTextBoxName }
         Write-ToSFLauncherLog "Getting Password textbox"
-        $passwordTextBox = @([System.__ComObject].InvokeMember(“getElementsByName”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGPasswordTextBoxName)) | where { $_.name -eq $NGPasswordTextBoxName }
+        $passwordTextBox = @([System.__ComObject].InvokeMember("getElementsByName",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGPasswordTextBoxName)) | where { $_.name -eq $NGPasswordTextBoxName }
         if ($TwoFactorAuth) {
             Write-ToSFLauncherLog "Getting Two Factor Authentication textbox"
-            $twoFactorTextBox = @([System.__ComObject].InvokeMember(“getElementsByName”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGTwoFactorTextBoxName)) | where { $_.name -eq $NGTwoFactorTextBoxName }
+            $twoFactorTextBox = @([System.__ComObject].InvokeMember("getElementsByName",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $NGTwoFactorTextBoxName)) | where { $_.name -eq $NGTwoFactorTextBoxName }
                 if ($twoFactorTextBox -ne $null) {
                     Write-ToSFLauncherLog "Setting Two Factor Authentication"
                     $twoFactorTextBox.value = $TwoFactorAuth
@@ -218,11 +218,11 @@ function Submit-UserCredentials {
         }
     } else {
         Write-ToSFLauncherLog "Getting Login button"
-        $loginButton = [System.__ComObject].InvokeMember(“getElementById”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFLoginButtonId)
+        $loginButton = [System.__ComObject].InvokeMember("getElementById",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFLoginButtonId)
         Write-ToSFLauncherLog "Getting UserName textbox"
-        $userNameTextBox = [System.__ComObject].InvokeMember(“getElementById”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFUsernameTextBoxId)
+        $userNameTextBox = [System.__ComObject].InvokeMember("getElementById",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFUsernameTextBoxId)
         Write-ToSFLauncherLog "Getting Password textbox"
-        $passwordTextBox = [System.__ComObject].InvokeMember(“getElementById”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFPasswordTextBoxId)
+        $passwordTextBox = [System.__ComObject].InvokeMember("getElementById",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFPasswordTextBoxId)
     }
 
     if ($userNameTextBox -ne $null -and $userNameTextBox.GetType() -ne [DBNull]) {
@@ -251,7 +251,7 @@ function Start-Resource {
     Write-ToSFLauncherLog "Getting SF resources page..."
     $try = 1
     do {
-        $logoffLink = [System.__ComObject].InvokeMember(“getElementById”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFLogOffLinkId)
+        $logoffLink = [System.__ComObject].InvokeMember("getElementById",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFLogOffLinkId)
         if ($logoffLink -ne $null -and $logoffLink.GetType() -ne [DBNull]) {
             Write-ToSFLauncherLog "Try #$try`: SUCCESS"
             break
@@ -268,7 +268,7 @@ function Start-Resource {
     Write-ToSFLauncherLog "Getting resource '$ResourceName'..."
     $try = 1
     do {
-        $resource = @([System.__ComObject].InvokeMember(“getElementsByTagName”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, "img")) | where { $_.alt -eq $ResourceName }
+        $resource = @([System.__ComObject].InvokeMember("getElementsByTagName",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, "img")) | where { $_.alt -eq $ResourceName }
         if ($resource -ne $null) {
             Write-ToSFLauncherLog "Try #$try`: SUCCESS"
             break
@@ -326,7 +326,7 @@ function Disconnect-User {
     Write-ToSFLauncherLog "Getting log off link..."
     $try = 1
     do {
-        $logoffLink = [System.__ComObject].InvokeMember(“getElementById”,[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFLogOffLinkId)
+        $logoffLink = [System.__ComObject].InvokeMember("getElementById",[System.Reflection.BindingFlags]::InvokeMethod, $null, $document, $SFLogOffLinkId)
         if ($logoffLink -ne $null -and $logoffLink.GetType() -ne [DBNull]) {
             Write-ToSFLauncherLog "Try #$try`: SUCCESS"
             break
