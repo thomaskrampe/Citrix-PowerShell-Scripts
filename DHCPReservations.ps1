@@ -63,7 +63,7 @@ function ImportDHCP {
                 $DHCPHostname = $r.HostName
             
                 Write-Verbose "Importing: $DHCPScopeID, $DHCPIPAddress, $DHCPHostname, $DHCPMacAddress"
-                # Add-DhcpServerv4Reservation -ScopeId $DHCPScopeID -IPAddress $DHCPIPAddress -Name $DHCPHostname -ClientId $DHCPMacAddress -Type Dhcp 
+                Add-DhcpServerv4Reservation -ScopeId $DHCPScopeID -IPAddress $DHCPIPAddress -Name $DHCPHostname -ClientId $DHCPMacAddress -Type Dhcp 
                 }
          }
          catch {
