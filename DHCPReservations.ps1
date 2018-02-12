@@ -12,7 +12,7 @@
         Path to the file (eg. c:\temp)
 
  .EXAMPLE
-        .\DHCPReservations.ps1 -Mode Export -DataPath "C:\temp"
+        .\DHCPReservations.ps1 -Mode Export -DataPath "C:\temp" -Verbose
  
  .LINK
         https://github.com/thomaskrampe/Citrix-PowerShell-Scripts 
