@@ -22,6 +22,10 @@
         Version       : 1.0
         Creation date : 12.02.2018 | v0.1 | Initial script
         Last change   : 12.02.2018 | v1.0 | Release to GitHub
+
+ .TODO
+        Create Scope Part
+        https://docs.microsoft.com/en-us/powershell/module/dhcpserver/add-dhcpserverv4scope?view=win10-ps
 #>
 
 Param (
